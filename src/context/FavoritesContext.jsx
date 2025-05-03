@@ -1,6 +1,7 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 
 const FavoritesContext = createContext();
+const LOCAL_STORAGE_KEY = 'opiadista_favorites';
 
 export function useFavorites() {
   const context = useContext(FavoritesContext);
@@ -11,7 +12,23 @@ export function useFavorites() {
 }
 
 export function FavoritesProvider({ children }) {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const storedFavorites = localStorage.getItem(LOCAL_STORAGE_KEY);
+      return storedFavorites ? JSON.parse(storedFavorites) : [];
+    } catch (error) {
+      console.error('Error loading favorites from localStorage', error);
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(favorites));
+    } catch (error) {
+      console.error('Error saving favorites to localStorage', error);
+    }
+  }, [favorites]);
 
   const addToFavorites = (joke) => {
     setFavorites((prevFavorites) => {
