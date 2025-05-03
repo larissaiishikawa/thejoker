@@ -95,6 +95,10 @@ export function SearchForm({ onSubmit, onKeywordSearch }) {
         </button>
       </div>
       
+      <div className={styles.apiTip}>
+        <p>💡 <strong>Dica:</strong> Escolha o idioma inglês para obter melhores resultados. A API possui mais piadas disponíveis em inglês.</p>
+      </div>
+      
       <form onSubmit={handleSubmit(processSubmit)} className={styles.form}>
         <h3 className={styles.formTitle}>Busca Avançada</h3>
         
