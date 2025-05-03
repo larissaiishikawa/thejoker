@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { SearchForm } from './components/SearchForm/SearchForm';
 import { JokeList } from './components/JokeList/JokeList';
 import { Favorites } from './components/Favorites/Favorites';
+import { StatsBar } from './components/StatsBar/StatsBar';
 import { FavoritesProvider, useFavorites } from './context/FavoritesContext';
 import { useFetchJokes } from './hooks/useFetchJokes';
 import './App.css';
@@ -59,6 +60,9 @@ function JokeApp() {
             {hasSearched ? (
               <>
                 <h2>Resultado</h2>
+                {!loading && !error && jokes.length > 0 && (
+                  <StatsBar jokes={jokes} />
+                )}
                 <JokeList jokes={jokes} error={error} loading={loading} />
               </>
             ) : (
