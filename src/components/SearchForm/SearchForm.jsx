@@ -17,7 +17,6 @@ const schema = yup.object({
 const CATEGORIES = [
   { value: 'Programming', label: 'Programação' },
   { value: 'Misc', label: 'Diversos' },
-  { value: 'Dark', label: 'Humor Negro' },
   { value: 'Pun', label: 'Trocadilhos' },
   { value: 'Spooky', label: 'Assustador' },
   { value: 'Christmas', label: 'Natal' }

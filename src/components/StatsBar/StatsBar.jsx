@@ -20,13 +20,11 @@ export function StatsBar({ jokes }) {
     };
 
     jokes.forEach(joke => {
-      // Contar por categoria
       if (!result.categories[joke.category]) {
         result.categories[joke.category] = 0;
       }
       result.categories[joke.category]++;
 
-      // Contar por tipo
       if (joke.type === 'single') {
         result.singleJokes++;
       } else if (joke.type === 'twopart') {

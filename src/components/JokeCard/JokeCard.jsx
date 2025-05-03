@@ -35,11 +35,9 @@ export function JokeCard({ joke }) {
         text: jokeText
       })
       .catch(() => {
-        // Se a share API falhar, usamos a abordagem de copiar para o clipboard
         copyToClipboard(jokeText);
       });
     } else {
-      // Navegador não suporta a Web Share API
       copyToClipboard(jokeText);
     }
   }, [joke]);

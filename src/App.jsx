@@ -14,26 +14,22 @@ const APP_VERSION = "1.0.0";
 
 function JokeApp() {
   const { jokes, loading, error, fetchJokes, searchJokesByKeyword, searchResults, searchTerm } = useFetchJokes();
-  const [hasSearched, setHasSearched] = useState(true); // Definindo como true para mostrar piadas pré-carregadas
+  const [hasSearched, setHasSearched] = useState(true);
   const [showFavorites, setShowFavorites] = useState(false);
   const { favorites } = useFavorites();
   const { toggleTheme } = useTheme();
   const [keywordSearch, setKeywordSearch] = useState('');
 
-  // Adiciona teclas de atalho para funcionalidades principais
   useEffect(() => {
     const handleKeyDown = (event) => {
-      // Alt + T: Alternar tema
       if (event.altKey && event.key === 't') {
         toggleTheme();
       }
       
-      // Alt + F: Mostrar favoritos
       if (event.altKey && event.key === 'f') {
         setShowFavorites(true);
       }
       
-      // Alt + R: Mostrar resultados
       if (event.altKey && event.key === 'r') {
         setShowFavorites(false);
       }
@@ -41,7 +37,6 @@ function JokeApp() {
     
     window.addEventListener('keydown', handleKeyDown);
     
-    // Tooltip para informar sobre os atalhos de teclado
     console.info(
       'Atalhos de teclado disponíveis:\n' +
       'Alt + T: Alternar tema\n' +
@@ -72,7 +67,6 @@ function JokeApp() {
     searchJokesByKeyword(keyword);
   };
 
-  // Determinar quais piadas exibir (todas, resultados de busca, ou mensagem inicial)
   const displayJokes = searchTerm || keywordSearch ? searchResults : jokes;
 
   return (
@@ -113,7 +107,6 @@ function JokeApp() {
               <>
                 <h2>Resultado</h2>
                 
-                {/* Barra de busca por palavra-chave */}
                 <div className="keywordSearch">
                   <input
                     type="text"
