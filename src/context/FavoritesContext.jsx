@@ -3,7 +3,11 @@ import { createContext, useState, useContext } from 'react';
 const FavoritesContext = createContext();
 
 export function useFavorites() {
-  return useContext(FavoritesContext);
+  const context = useContext(FavoritesContext);
+  if (!context) {
+    throw new Error('useFavorites deve ser usado dentro de um FavoritesProvider');
+  }
+  return context;
 }
 
 export function FavoritesProvider({ children }) {
