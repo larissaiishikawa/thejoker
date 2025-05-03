@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { SearchForm } from './components/SearchForm/SearchForm';
 import { JokeList } from './components/JokeList/JokeList';
+import { Favorites } from './components/Favorites/Favorites';
 import { FavoritesProvider, useFavorites } from './context/FavoritesContext';
 import { useFetchJokes } from './hooks/useFetchJokes';
 import './App.css';
@@ -21,10 +22,6 @@ function JokeApp() {
     fetchJokes(params);
     setHasSearched(true);
     setShowFavorites(false);
-  };
-
-  const toggleFavorites = () => {
-    setShowFavorites(prevState => !prevState);
   };
 
   return (
@@ -71,17 +68,7 @@ function JokeApp() {
             )}
           </section>
         ) : (
-          <section className="favoritesSection">
-            <h2>Piadas Favoritas</h2>
-            {favorites.length > 0 ? (
-              <JokeList jokes={favorites} error={null} loading={false} />
-            ) : (
-              <div className="emptyFavorites">
-                <p>Você ainda não adicionou nenhuma piada aos favoritos</p>
-                <p>Clique no coração em uma piada para adicioná-la aqui</p>
-              </div>
-            )}
-          </section>
+          <Favorites />
         )}
       </main>
 
