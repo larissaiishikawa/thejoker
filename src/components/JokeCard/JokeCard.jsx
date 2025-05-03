@@ -75,6 +75,9 @@ export function JokeCard({ joke }) {
             >
               {isFavorite ? '❤️' : '🤍'}
             </button>
+            <span className={styles.clickHint}>
+              Clique para {joke.type === 'single' ? 'virar o cartão' : 'ver a resposta'}
+            </span>
             <button 
               className={styles.shareButton}
               onClick={handleShare}
@@ -86,9 +89,6 @@ export function JokeCard({ joke }) {
           {shareMessage && (
             <div className={styles.shareMessage}>{shareMessage}</div>
           )}
-          <div className={styles.clickHint}>
-            Clique para {joke.type === 'single' ? 'virar o cartão' : 'ver a resposta'}
-          </div>
         </div>
         <div className={styles.cardBack}>
           {joke.type === 'twopart' && (
@@ -113,6 +113,7 @@ export function JokeCard({ joke }) {
             >
               {isFavorite ? '❤️' : '🤍'}
             </button>
+            <span className={styles.clickHint}>Clique para voltar</span>
             <button 
               className={styles.shareButton}
               onClick={handleShare}
@@ -124,7 +125,6 @@ export function JokeCard({ joke }) {
           {shareMessage && (
             <div className={styles.shareMessage}>{shareMessage}</div>
           )}
-          <div className={styles.clickHint}>Clique para voltar</div>
         </div>
       </div>
     </div>

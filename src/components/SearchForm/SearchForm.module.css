@@ -1,10 +1,21 @@
+.searchContainer {
+  margin-bottom: 30px;
+}
+
 .form {
   background-color: var(--card-bg-color);
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border-color);
+}
+
+.formTitle {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: var(--title-color);
+  font-weight: 600;
 }
 
 .formGroup {
@@ -13,20 +24,27 @@
 
 .label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  margin-bottom: 8px;
+  font-weight: 600;
   font-size: 14px;
   color: var(--text-color);
 }
 
 .input, .select {
   width: 100%;
-  padding: 8px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+  padding: 10px 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
   font-size: 16px;
-  background-color: var(--card-bg-color);
+  background-color: var(--input-bg-color);
   color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.input:focus, .select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.2);
 }
 
 .inputError {
@@ -37,45 +55,124 @@
 .checkboxGroup {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 }
 
 .checkbox {
   display: flex;
   align-items: center;
-  margin-right: 10px;
 }
 
 .checkbox input {
-  margin-right: 5px;
+  margin-right: 6px;
+  accent-color: var(--primary-color);
+  width: 18px;
+  height: 18px;
 }
 
 .checkbox label {
   color: var(--text-color);
+  font-size: 14px;
 }
 
 .button {
   background-color: var(--primary-color);
-  color: white;
+  color: var(--button-text-color);
   border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
+  padding: 12px 20px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: block;
+  width: 100%;
+  text-align: center;
 }
 
 .button:hover {
-  background-color: #45a049;
+  background-color: var(--primary-hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
+  transform: none;
 }
 
 .error {
   color: #d32f2f;
   font-size: 12px;
   margin-top: 4px;
+}
+
+/* New styles for keyword search */
+.keywordForm {
+  margin-bottom: 16px;
+}
+
+.keywordWrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.keywordInput {
+  flex-grow: 1;
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: var(--input-bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.keywordInput:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.2);
+}
+
+.keywordButton {
+  background-color: var(--primary-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 0 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.keywordButton:hover {
+  background-color: var(--primary-hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quickButtons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.quickButton {
+  background-color: var(--secondary-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.quickButton:hover {
+  background-color: var(--secondary-hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

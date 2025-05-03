@@ -7,17 +7,18 @@ import { ThemeToggle } from './components/ThemeToggle/ThemeToggle';
 import { FavoritesProvider, useFavorites } from './context/FavoritesContext';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { useFetchJokes } from './hooks/useFetchJokes';
+import { ErrorMessage } from './components/ErrorMessage/ErrorMessage';
 import './App.css';
 
-// Versão da aplicação
 const APP_VERSION = "1.0.0";
 
 function JokeApp() {
-  const { jokes, loading, error, fetchJokes } = useFetchJokes();
-  const [hasSearched, setHasSearched] = useState(false);
+  const { jokes, loading, error, fetchJokes, searchJokesByKeyword, searchResults, searchTerm } = useFetchJokes();
+  const [hasSearched, setHasSearched] = useState(true); // Definindo como true para mostrar piadas pré-carregadas
   const [showFavorites, setShowFavorites] = useState(false);
   const { favorites } = useFavorites();
   const { toggleTheme } = useTheme();
+  const [keywordSearch, setKeywordSearch] = useState('');
 
   // Adiciona teclas de atalho para funcionalidades principais
   useEffect(() => {
@@ -57,13 +58,22 @@ function JokeApp() {
     const params = {
       categories: data.categories,
       amount: data.amount || 5,
-      blacklistFlags: data.blacklistFlags || [],
-      language: data.language || 'pt'
+      language: data.language || 'pt',
+      keyword: data.keyword || ''
     };
     fetchJokes(params);
     setHasSearched(true);
     setShowFavorites(false);
+    setKeywordSearch('');
   };
+
+  const handleKeywordSearch = (keyword) => {
+    setKeywordSearch(keyword);
+    searchJokesByKeyword(keyword);
+  };
+
+  // Determinar quais piadas exibir (todas, resultados de busca, ou mensagem inicial)
+  const displayJokes = searchTerm || keywordSearch ? searchResults : jokes;
 
   return (
     <div className="container">
@@ -75,7 +85,7 @@ function JokeApp() {
       <main className="main">
         <section className="searchSection">
           <h2>Encontre Piadas</h2>
-          <SearchForm onSubmit={handleSubmit} />
+          <SearchForm onSubmit={handleSubmit} onKeywordSearch={handleKeywordSearch} />
         </section>
         
         <section className="tabsSection">
@@ -102,10 +112,42 @@ function JokeApp() {
             {hasSearched ? (
               <>
                 <h2>Resultado</h2>
-                {!loading && !error && jokes.length > 0 && (
-                  <StatsBar jokes={jokes} />
+                
+                {/* Barra de busca por palavra-chave */}
+                <div className="keywordSearch">
+                  <input
+                    type="text"
+                    placeholder="Filtrar piadas por palavra-chave (ex: carro)"
+                    value={keywordSearch}
+                    onChange={(e) => handleKeywordSearch(e.target.value)}
+                    className="keywordInput"
+                  />
+                  {keywordSearch && (
+                    <span className="searchResults">
+                      Encontradas {searchResults.length} piada(s) com "{keywordSearch}"
+                    </span>
+                  )}
+                </div>
+                
+                {error ? (
+                  <ErrorMessage 
+                    message={error} 
+                    suggestion="Tente modificar os parâmetros de busca ou tente novamente mais tarde."
+                  />
+                ) : (
+                  <>
+                    {!loading && jokes.length > 0 && (
+                      <StatsBar jokes={keywordSearch ? searchResults : jokes} />
+                    )}
+                    <JokeList jokes={displayJokes} error={error} loading={loading} />
+                    
+                    {!loading && jokes.length > 0 && searchResults.length === 0 && keywordSearch && (
+                      <div className="noResults">
+                        <p>Nenhuma piada encontrada com "{keywordSearch}".</p>
+                      </div>
+                    )}
+                  </>
                 )}
-                <JokeList jokes={jokes} error={error} loading={loading} />
               </>
             ) : (
               <div className="initialMessage">
@@ -124,12 +166,14 @@ function JokeApp() {
         <p>Desenvolvido com React e <a href="https://v2.jokeapi.dev/" target="_blank" rel="noopener noreferrer">JokeAPI v2</a></p>
         <p className="version">Versão {APP_VERSION}</p>
         <div className="shortcuts">
-          <button 
-            className="shortcutInfo"
-            onClick={() => alert('Atalhos disponíveis:\n• Alt+T: Alternar tema\n• Alt+F: Mostrar favoritos\n• Alt+R: Mostrar resultados')}
-          >
-            Atalhos de teclado
-          </button>
+          <details>
+            <summary>Atalhos de teclado</summary>
+            <ul className="shortcutsList">
+              <li>Alt + T: Alternar tema</li>
+              <li>Alt + F: Mostrar favoritos</li>
+              <li>Alt + R: Mostrar resultados</li>
+            </ul>
+          </details>
         </div>
       </footer>
     </div>

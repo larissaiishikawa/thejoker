@@ -1,17 +1,19 @@
 :root {
-  --primary-color: #4CAF50;
-  --secondary-color: #2196F3;
+  /* Esquema de cores amarelo e moderno */
+  --primary-color: #FFB600;
+  --secondary-color: #FF9800;
+  --accent-color: #FFC400;
   --text-color: #333333;
-  --background-color: #f9f9f9;
-  --card-bg-color: #ffffff;
-  --card-back-bg-color: #f8f9fa;
-  --border-color: #dddddd;
-  --stats-bg-color: #f0f8ff;
-  --stats-item-bg-color: #ffffff;
-  --confirm-dialog-bg: #ffffff;
-  --header-text-color: #ffffff;
-  --empty-message-bg: #f5f5f5;
-  --empty-message-text: #666666;
+  --background-color: #FFFBF0;
+  --card-bg-color: #FFFFFF;
+  --card-back-bg-color: #FFF8E1;
+  --border-color: #FFE082;
+  --header-bg-color: #FFB600;
+  --header-text-color: #FFFFFF;
+  --button-hover-color: #FF9800;
+  --empty-message-bg: #FFF8E1;
+  --empty-message-text: #5D4037;
+  --confirm-dialog-bg: #FFFFFF;
 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
@@ -27,18 +29,22 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Dark theme */
 .dark-theme {
-  --text-color: #f0f0f0;
-  --background-color: #1a1a1a;
-  --card-bg-color: #2a2a2a;
-  --card-back-bg-color: #333333;
-  --border-color: #555555;
-  --stats-bg-color: #2c3e50;
-  --stats-item-bg-color: #34495e;
-  --confirm-dialog-bg: #2a2a2a;
-  --header-text-color: #ffffff;
+  --primary-color: #FFB600;
+  --secondary-color: #FFA000;
+  --accent-color: #FFD600;
+  --text-color: #F5F5F5;
+  --background-color: #262626;
+  --card-bg-color: #333333;
+  --card-back-bg-color: #3E3E3E;
+  --border-color: #4D4D4D;
+  --header-bg-color: #3E2723;
+  --header-text-color: #FFD600;
+  --button-hover-color: #FFB600;
   --empty-message-bg: #333333;
-  --empty-message-text: #cccccc;
+  --empty-message-text: #FFD600;
+  --confirm-dialog-bg: #333333;
 
   color-scheme: dark;
 }
@@ -51,8 +57,17 @@
 
 body {
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-theme body {
   background-color: var(--background-color);
   color: var(--text-color);
 }
@@ -83,17 +98,17 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #4CAF50;
+  background-color: var(--primary-color);
   color: white;
   cursor: pointer;
   transition: background-color 0.25s;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: var(--button-hover-color);
 }
 
 button:focus, button:focus-visible {
-  outline: 2px solid #45a049;
+  outline: 2px solid var(--button-hover-color);
   outline-offset: 2px;
 }
