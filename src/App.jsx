@@ -9,6 +9,9 @@ import { ThemeProvider } from './context/ThemeContext';
 import { useFetchJokes } from './hooks/useFetchJokes';
 import './App.css';
 
+// Versão da aplicação
+const APP_VERSION = "1.0.0";
+
 function JokeApp() {
   const { jokes, loading, error, fetchJokes } = useFetchJokes();
   const [hasSearched, setHasSearched] = useState(false);
@@ -82,6 +85,7 @@ function JokeApp() {
 
       <footer className="footer">
         <p>Desenvolvido com React e <a href="https://v2.jokeapi.dev/" target="_blank" rel="noopener noreferrer">JokeAPI v2</a></p>
+        <p className="version">Versão {APP_VERSION}</p>
       </footer>
     </div>
   );
