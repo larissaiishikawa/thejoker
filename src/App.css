@@ -91,6 +91,52 @@
   margin-bottom: 20px;
 }
 
+/* Novos estilos para abas */
+.tabsSection {
+  margin: 20px 0;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tab {
+  background-color: transparent;
+  border: none;
+  padding: 10px 20px;
+  color: var(--text-color);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  background-color: rgba(76, 175, 80, 0.1);
+}
+
+.activeTab {
+  border-bottom: 3px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.searchSection, .resultsSection, .favoritesSection {
+  margin-bottom: 30px;
+}
+
+.initialMessage, .emptyFavorites {
+  text-align: center;
+  padding: 30px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  color: #666;
+}
+
+.emptyFavorites p:first-child {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
 .footer {
   margin-top: 30px;
   text-align: center;
@@ -120,5 +166,19 @@
   
   .subtitle {
     font-size: 1rem;
+  }
+  
+  .tabs {
+    flex-direction: column;
+    border-bottom: none;
+  }
+  
+  .tab {
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .activeTab {
+    border-left: 3px solid var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
   }
 }
