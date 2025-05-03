@@ -33,6 +33,7 @@
   align-items: center;
   padding: 20px;
   border-radius: 8px;
+  overflow-y: auto;
 }
 
 .cardFront {
@@ -112,4 +113,30 @@
   padding: 2px 8px;
   border-radius: 10px;
   font-weight: bold;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .card {
+    height: 220px;
+  }
+  
+  .cardFront p, .cardBack p {
+    font-size: 14px;
+  }
+  
+  .category {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    height: 250px;
+  }
+  
+  .favoriteButton {
+    font-size: 18px;
+  }
 }
