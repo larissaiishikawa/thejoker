@@ -13,9 +13,16 @@ export function useFetchJokes() {
     
     try {
       const categoriesParam = categories.length > 0 ? categories.join(',') : 'Any';
-      const blacklistParam = blacklistFlags.length > 0 ? blacklistFlags.join(',') : '';
       
-      const url = `https://v2.jokeapi.dev/joke/${categoriesParam}?amount=${amount}${blacklistParam ? `&blacklistFlags=${blacklistParam}` : ''}${language ? `&lang=${language}` : ''}`;
+      let url = `https://v2.jokeapi.dev/joke/${categoriesParam}?amount=${amount}`;
+      
+      if (blacklistFlags && blacklistFlags.length > 0) {
+        url += `&blacklistFlags=${blacklistFlags.join(',')}`;
+      }
+      
+      if (language) {
+        url += `&lang=${language}`;
+      }
       
       const response = await fetch(url);
       const data = await response.json();
@@ -27,7 +34,6 @@ export function useFetchJokes() {
         if (Array.isArray(data.jokes)) {
           setJokes(data.jokes);
         } else if (data.type) {
-          // Single joke response
           setJokes([data]);
         } else {
           setJokes([]);
