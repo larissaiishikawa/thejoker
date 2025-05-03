@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SearchForm } from './components/SearchForm/SearchForm';
 import { JokeList } from './components/JokeList/JokeList';
 import { Favorites } from './components/Favorites/Favorites';
 import { StatsBar } from './components/StatsBar/StatsBar';
 import { ThemeToggle } from './components/ThemeToggle/ThemeToggle';
 import { FavoritesProvider, useFavorites } from './context/FavoritesContext';
-import { ThemeProvider } from './context/ThemeContext';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { useFetchJokes } from './hooks/useFetchJokes';
 import './App.css';
 
@@ -17,6 +17,41 @@ function JokeApp() {
   const [hasSearched, setHasSearched] = useState(false);
   const [showFavorites, setShowFavorites] = useState(false);
   const { favorites } = useFavorites();
+  const { toggleTheme } = useTheme();
+
+  // Adiciona teclas de atalho para funcionalidades principais
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      // Alt + T: Alternar tema
+      if (event.altKey && event.key === 't') {
+        toggleTheme();
+      }
+      
+      // Alt + F: Mostrar favoritos
+      if (event.altKey && event.key === 'f') {
+        setShowFavorites(true);
+      }
+      
+      // Alt + R: Mostrar resultados
+      if (event.altKey && event.key === 'r') {
+        setShowFavorites(false);
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    
+    // Tooltip para informar sobre os atalhos de teclado
+    console.info(
+      'Atalhos de teclado disponíveis:\n' +
+      'Alt + T: Alternar tema\n' +
+      'Alt + F: Mostrar favoritos\n' +
+      'Alt + R: Mostrar resultados'
+    );
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [toggleTheme]);
 
   const handleSubmit = (data) => {
     const params = {
@@ -48,12 +83,14 @@ function JokeApp() {
             <button 
               className={`tab ${!showFavorites ? 'activeTab' : ''}`}
               onClick={() => setShowFavorites(false)}
+              title="Mostrar resultados (Alt+R)"
             >
               Resultados da Busca
             </button>
             <button 
               className={`tab ${showFavorites ? 'activeTab' : ''}`}
               onClick={() => setShowFavorites(true)}
+              title="Mostrar favoritos (Alt+F)"
             >
               Favoritos ({favorites.length})
             </button>
@@ -86,6 +123,14 @@ function JokeApp() {
       <footer className="footer">
         <p>Desenvolvido com React e <a href="https://v2.jokeapi.dev/" target="_blank" rel="noopener noreferrer">JokeAPI v2</a></p>
         <p className="version">Versão {APP_VERSION}</p>
+        <div className="shortcuts">
+          <button 
+            className="shortcutInfo"
+            onClick={() => alert('Atalhos disponíveis:\n• Alt+T: Alternar tema\n• Alt+F: Mostrar favoritos\n• Alt+R: Mostrar resultados')}
+          >
+            Atalhos de teclado
+          </button>
+        </div>
       </footer>
     </div>
   );

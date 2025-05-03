@@ -156,6 +156,26 @@
   margin-top: 5px;
 }
 
+.shortcuts {
+  margin-top: 10px;
+}
+
+.shortcutInfo {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.shortcutInfo:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
 /* Responsive styling */
 @media (max-width: 768px) {
   .container {
