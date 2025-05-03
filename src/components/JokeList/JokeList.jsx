@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { JokeCard } from '../JokeCard/JokeCard';
+import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import styles from './JokeList.module.css';
 
 export function JokeList({ jokes, error, loading }) {
@@ -14,11 +15,7 @@ export function JokeList({ jokes, error, loading }) {
   }
 
   if (error) {
-    return (
-      <div className={styles.error}>
-        <p>Ops! Não foi possível carregar piadas. Tente novamente mais tarde.</p>
-      </div>
-    );
+    return <ErrorMessage message="Ops! Não foi possível carregar piadas. Tente novamente mais tarde." />;
   }
 
   if (memoizedJokes.length === 0) {
