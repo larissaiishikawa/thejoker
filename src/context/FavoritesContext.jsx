@@ -44,10 +44,15 @@ export function FavoritesProvider({ children }) {
     );
   };
 
+  const clearAllFavorites = () => {
+    setFavorites([]);
+  };
+
   const value = {
     favorites,
     addToFavorites,
-    removeFromFavorites
+    removeFromFavorites,
+    clearAllFavorites
   };
 
   return (

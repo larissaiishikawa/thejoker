@@ -2,12 +2,34 @@
   margin-bottom: 30px;
 }
 
-.favoritesSection h2 {
+.favoritesHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.favoritesHeader h2 {
   color: #333333;
   border-bottom: 2px solid #4CAF50;
   padding-bottom: 10px;
-  margin-top: 0;
-  margin-bottom: 20px;
+  margin: 0;
+  flex: 1;
+}
+
+.clearButton {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.clearButton:hover {
+  background-color: #d32f2f;
 }
 
 .emptyFavorites {
@@ -26,4 +48,71 @@
 .emptyFavorites p:last-child {
   font-size: 14px;
   color: #888;
+}
+
+.confirmDialog {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.confirmDialog p {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.confirmActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.confirmButton {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancelButton {
+  background-color: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirmButton:hover {
+  background-color: #d32f2f;
+}
+
+.cancelButton:hover {
+  background-color: #bdbdbd;
+}
+
+@media (max-width: 768px) {
+  .favoritesHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .favoritesHeader h2 {
+    margin-bottom: 10px;
+  }
+  
+  .confirmActions {
+    flex-direction: column;
+  }
+  
+  .confirmButton, .cancelButton {
+    width: 100%;
+    margin-bottom: 8px;
+  }
 }
