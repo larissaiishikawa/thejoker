@@ -61,10 +61,15 @@
   text-align: center;
 }
 
-.favoriteButton {
+.cardActions {
   position: absolute;
   top: 10px;
   right: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.favoriteButton, .shareButton {
   background: none;
   border: none;
   font-size: 20px;
@@ -73,12 +78,26 @@
   transition: transform 0.2s ease;
 }
 
-.favoriteButton:hover {
+.favoriteButton:hover, .shareButton:hover {
   transform: scale(1.2);
 }
 
 .favoriteButton.favorite {
   animation: pulse 1s infinite;
+}
+
+.shareMessage {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: 3;
 }
 
 @keyframes pulse {
@@ -136,7 +155,7 @@
     height: 250px;
   }
   
-  .favoriteButton {
+  .favoriteButton, .shareButton {
     font-size: 18px;
   }
 }
