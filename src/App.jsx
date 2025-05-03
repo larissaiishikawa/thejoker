@@ -3,7 +3,9 @@ import { SearchForm } from './components/SearchForm/SearchForm';
 import { JokeList } from './components/JokeList/JokeList';
 import { Favorites } from './components/Favorites/Favorites';
 import { StatsBar } from './components/StatsBar/StatsBar';
+import { ThemeToggle } from './components/ThemeToggle/ThemeToggle';
 import { FavoritesProvider, useFavorites } from './context/FavoritesContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { useFetchJokes } from './hooks/useFetchJokes';
 import './App.css';
 
@@ -76,6 +78,8 @@ function JokeApp() {
         )}
       </main>
 
+      <ThemeToggle />
+
       <footer className="footer">
         <p>Desenvolvido com React e <a href="https://v2.jokeapi.dev/" target="_blank" rel="noopener noreferrer">JokeAPI v2</a></p>
       </footer>
@@ -85,9 +89,11 @@ function JokeApp() {
 
 function App() {
   return (
-    <FavoritesProvider>
-      <JokeApp />
-    </FavoritesProvider>
+    <ThemeProvider>
+      <FavoritesProvider>
+        <JokeApp />
+      </FavoritesProvider>
+    </ThemeProvider>
   );
 }
 
