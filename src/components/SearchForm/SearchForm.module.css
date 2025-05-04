@@ -176,3 +176,48 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+.apiTip {
+  background-color: rgba(255, 204, 0, 0.1);
+  border-left: 4px solid var(--primary-color);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.apiTip p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+/* Regras para dispositivos móveis */
+@media (max-width: 768px) {
+  .keywordWrapper {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .keywordInput {
+    width: 100%;
+  }
+
+  .keywordButton {
+    width: 100%;
+    padding: 12px 20px;
+  }
+
+  .quickButtons {
+    flex-direction: column;
+  }
+
+  .quickButton {
+    width: 100%;
+  }
+
+  .checkboxGroup {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
